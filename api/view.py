@@ -25,10 +25,12 @@ def plaza_view():
         t.format_data()
         t.comments.sort(key=lambda c: c.created_time, reverse=True)
         t.comments = t.comments[:6]
+        t.praise = len(t.praise)
+        print('transmi',type(t.transmit))
         if t.transmit == '0':
             t.images = t.image
         else:
-            tweet_id = int(t.transmit)
+            tweet_id = 1
             transmit = Tweet.query.filter_by(id=tweet_id).first()
             if transmit is None:
                 transmit = Tweet.query.filter_by(id=9).first()

@@ -1,22 +1,22 @@
-/*TMODJS:{"version":5,"md5":"e6db91c3d92e1f43c1664fbb32427bf6"}*/
+/*TMODJS:{"version":6,"md5":"040f7188c6366c08ab7bc121f0035772"}*/
 template('addTweetTemplate',function($data,$filename
 /**/) {
-'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,id=$data.id,uportrait=$data.uportrait,user_id=$data.user_id,unicheng=$data.unicheng,time=$data.time,content=$data.content,$each=$utils.$each,image=$data.image,value=$data.value,i=$data.i,current_user=$data.current_user,praise=$data.praise,transmit_count=$data.transmit_count,comments_count=$data.comments_count,$out='';$out+=' <div id="id-div-tweet-body" class="my-content-tweet"> <div class="modal fade" id="id-div-guanzhu-';
+'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,id=$data.id,uportrait=$data.uportrait,user_id=$data.user_id,unickname=$data.unickname,time=$data.time,content=$data.content,$each=$utils.$each,image=$data.image,value=$data.value,i=$data.i,current_user=$data.current_user,praise=$data.praise,transmit_count=$data.transmit_count,comments_count=$data.comments_count,$out='';$out+=' <div id="id-div-tweet-body" class="my-content-tweet"> <div class="modal fade" id="id-div-follow-';
 $out+=$escape(id);
-$out+='" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> <div class="my-modal-guanzhu"> <img src=';
+$out+='" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> <div class="my-modal-follow"> <img src=';
 $out+=$escape(uportrait);
-$out+=' class="my-portrait-guanzhu img-thumbnail"> <div class="my-guanzhu-button"> <button class="class-button-guanzhu btn btn-primary" data-id="';
+$out+=' class="my-portrait-follow img-thumbnail"> <div class="my-follow-button"> <button class="class-button-follow btn btn-primary" data-id="';
 $out+=$escape(user_id);
-$out+='" data-dismiss="modal" type="button" >关注</button> <button class="class-button-qxguanzhu btn btn-primary" data-id="';
+$out+='" data-dismiss="modal" type="button" >关注</button> <button class="class-button-qxfollow btn btn-primary" data-id="';
 $out+=$escape(user_id);
 $out+='" data-dismiss="modal" type="button" >取消关注</button> </div> </div> </div> <div class="my-tweet-portrait"> <img class="img-portrait" src=';
 $out+=$escape(uportrait);
 $out+=' data-id="';
 $out+=$escape(user_id);
-$out+='" data-toggle="modal" data-target="#id-div-guanzhu-';
+$out+='" data-toggle="modal" data-target="#id-div-follow-';
 $out+=$escape(id);
-$out+='" > <h4 class="my-tweet-nicheng">';
-$out+=$escape(unicheng);
+$out+='" > <h4 class="my-tweet-nickname">';
+$out+=$escape(unickname);
 $out+=' <small><footer class="my-tweet-time">微博创建于 <cite title="Source Title">';
 $out+=$escape(time);
 $out+='</cite></footer></small> </h4> </div> <div class="my-tweet-contents"> <p class=".my-tweet-content"> ';

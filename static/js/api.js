@@ -97,9 +97,9 @@ vip.tweetComment = function (form, tweet_id, success, error) {
     this.post(url,form,success,error);
 };
 
-vip.tweetAddPraise = function (form, tweet_id, success, error) {
+vip.tweetAddPraise = function (tweet_id, success, error) {
     var url = '/tweet/addPraise/' + tweet_id;
-    this.post(url,form,success,error);
+    this.get(url,success,error);
 };
 
 vip.userAddThings = function (form, success, error) {

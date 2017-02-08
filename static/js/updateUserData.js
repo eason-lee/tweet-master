@@ -17,7 +17,7 @@ var updateUserData = function() {
 var addUserThings = function() {
     var image= arguments[0]
     var form = {
-        'nicheng': $('#id-input-nicheng').val(),
+        'nickname': $('#id-input-nickname').val(),
         'portrait': image
     };
     var success = function (r) {
@@ -31,5 +31,6 @@ var addUserThings = function() {
     var error = function (err) {
       log(err);
     };
+    log(form)
     vip.userAddThings(form, success, error);
 };

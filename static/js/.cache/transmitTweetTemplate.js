@@ -1,28 +1,28 @@
-/*TMODJS:{"version":6,"md5":"622391b1495975f2abd4f292be324190"}*/
+/*TMODJS:{"version":7,"md5":"7e724b9997a3db0929da739290ea3339"}*/
 template('transmitTweetTemplate',function($data,$filename
 /**/) {
-'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,did=$data.did,dportrait=$data.dportrait,user_id=$data.user_id,dnicheng=$data.dnicheng,dtime=$data.dtime,dcontent=$data.dcontent,tnicheng=$data.tnicheng,ttime=$data.ttime,tcontent=$data.tcontent,$each=$utils.$each,timage=$data.timage,value=$data.value,i=$data.i,tid=$data.tid,tpraise=$data.tpraise,ttransmit=$data.ttransmit,tcomments=$data.tcomments,current_user=$data.current_user,dpraise=$data.dpraise,dtransmit_count=$data.dtransmit_count,dcomments_count=$data.dcomments_count,$out='';$out+=' <div id="id-div-tweet-body" class="my-tweet-transmit"> <div class="my-transmit-top"> <div class="modal fade" id="id-div-guanzhu-';
+'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,did=$data.did,dportrait=$data.dportrait,user_id=$data.user_id,dnickname=$data.dnickname,dtime=$data.dtime,dcontent=$data.dcontent,tnickname=$data.tnickname,ttime=$data.ttime,tcontent=$data.tcontent,$each=$utils.$each,timage=$data.timage,value=$data.value,i=$data.i,tid=$data.tid,tpraise=$data.tpraise,ttransmit=$data.ttransmit,tcomments=$data.tcomments,current_user=$data.current_user,dpraise=$data.dpraise,dtransmit_count=$data.dtransmit_count,dcomments_count=$data.dcomments_count,$out='';$out+=' <div id="id-div-tweet-body" class="my-tweet-transmit"> <div class="my-transmit-top"> <div class="modal fade" id="id-div-follow-';
 $out+=$escape(did);
-$out+='" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> <div class="my-modal-guanzhu"> <img src=';
+$out+='" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> <div class="my-modal-follow"> <img src=';
 $out+=$escape(dportrait);
-$out+=' class="my-portrait-guanzhu img-thumbnail"> <div class="my-guanzhu-button"> <button class="class-button-guanzhu btn btn-primary" data-id="';
+$out+=' class="my-portrait-follow img-thumbnail"> <div class="my-follow-button"> <button class="class-button-follow btn btn-primary" data-id="';
 $out+=$escape(user_id);
-$out+='" data-dismiss="modal" type="button" >关注</button> <button class="class-button-qxguanzhu btn btn-primary" data-id="';
+$out+='" data-dismiss="modal" type="button" >关注</button> <button class="class-button-qxfollow btn btn-primary" data-id="';
 $out+=$escape(user_id);
 $out+='" data-dismiss="modal" type="button" >取消关注</button> </div> </div> </div> <div class="my-tweet-transmit-portrait-1"> <img src=';
 $out+=$escape(dportrait);
 $out+=' data-id="';
 $out+=$escape(did);
-$out+='" data-toggle="modal" data-target="#id-div-guanzhu-';
+$out+='" data-toggle="modal" data-target="#id-div-follow-';
 $out+=$escape(did);
-$out+='" class="img-portrait"> <h4 class="my-tweet-nicheng">';
-$out+=$escape(dnicheng);
+$out+='" class="img-portrait"> <h4 class="my-tweet-nickname">';
+$out+=$escape(dnickname);
 $out+=' <small><footer class="my-tweet-time">微博创建于 <cite title="Source Title">';
 $out+=$escape(dtime);
 $out+='</cite></footer></small> </h4> </div> <p class="my-tweet-transmit-content"> ';
 $out+=$escape(dcontent);
-$out+=' <p> </div> <div class="my-transmit-content-tweet"> <div class="my-tweet-transmit-portrait-2"> <h4 class="my-tweet-nicheng">';
-$out+=$escape(tnicheng);
+$out+=' <p> </div> <div class="my-transmit-content-tweet"> <div class="my-tweet-transmit-portrait-2"> <h4 class="my-tweet-nickname">';
+$out+=$escape(tnickname);
 $out+=' <small><footer class="my-tweet-time">微博创建于 <cite title="Source Title">';
 $out+=$escape(ttime);
 $out+='</cite></footer></small> </h4> </div> <div class="my-transmit-tweet-contents"> <p class=".my-tweet-content"> ';

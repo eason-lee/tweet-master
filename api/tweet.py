@@ -7,19 +7,10 @@ main = Blueprint('tweet', __name__)
 def tweet_add():
     u = current_user()
     form = request.get_json()
-    if 'image' in form:
-        image = form['image']
-        form['image'] = str(image)
-    t = Tweet(form)
-    t.user = u
-    t.save()
-    t.portrait = u.portrait
-    t.nickname = u.nickname
-    r = dict(
-        success=True,
-        data=t.json(),
-        user_id=u.id,
-    )
+    try:
+        r = Tweet.add(u,form)
+    except:
+        r = dict(success=False)
     return jsonify(r)
 
 # 删除微博
@@ -31,11 +22,14 @@ def tweet_delete(id):
     if user.id != t.user_id and user.id != 1:
         abort(401)
     else:
-        Tweet.delete(id)
-        r = {
-            'success': True,
-            'message': '成功删除',
-        }
+        try:
+            Tweet.delete(id)
+            r = {
+                'success': True,
+                'message': '成功删除',
+            }
+        except:
+            r = dict(success=False)
     return jsonify(r)
 
 
@@ -44,16 +38,16 @@ def tweet_delete(id):
 def tweet_addComment(id):
     u = current_user()
     t = Tweet.query.get(id)
-    if t is None:
-        abort(404)
     form = request.get_json()
-    t.comments_count = form['comments_count']
+    t.comments_count = int(form['comments_count']) + 1
     del form['comments_count']
     c = Comment(form)
     c.tweet = t
     c.user = u
     c.save()
     t.save()
+    c.comments_count = t.comments_count
+    print('count',c.comments_count)
     r = {
         'success': True,
         'data': c.json(),
@@ -62,18 +56,13 @@ def tweet_addComment(id):
 
 
 # 添加赞
-@main.route('/addPraise/<int:id>', methods=['POST'])
+@main.route('/addPraise/<int:id>')
 def tweet_addPraise(id):
-    t = Tweet.query.get(id)
-    if t is None:
-        abort(404)
-    form = request.get_json()
-    t.praise = form['praise']
-    t.save()
-    r = dict(
-        success=True,
-        data=t.json(),
-    )
+    u = current_user()
+    try:
+        r = Tweet.add_praise(id,u)
+    except:
+        r = dict(success=False)
     return jsonify(r)
 
 
@@ -107,10 +96,21 @@ def tweet_transmit(id):
 @main.route('/loads/<page_id>')
 def tweet_loads(page_id):
     u = current_user()
+    limit = 12
     if page_id == '1':
-        ts = timeline_tweets(u)
+        ts = timeline_tweets(u,limit)
     elif page_id == '2':
-        ts = plaza_tweets()
+        ts = plaza_tweets(limit)
+    ts = add_userinfo(ts)
+    r = dict(
+        success=True,
+        data=[t.json() for t in ts],
+        user_id = u.id,
+    )
+    return jsonify(r)
+
+# 给每条微博加上用户信息
+def add_userinfo(ts):
     for t in ts:
         if t.transmit != '0':
             bt = Tweet.query.filter_by(id=int(t.transmit)).first()
@@ -122,15 +122,10 @@ def tweet_loads(page_id):
             tu = User.query.filter_by(id=t.user_id).first()
             t.nickname = tu.nickname
             t.portrait = tu.portrait
-    r = dict(
-        success=True,
-        data=[t.json() for t in ts],
-        user_id = u.id,
-    )
-    return jsonify(r)
+    return ts
 
 # 加载个人主页的微博
-def timeline_tweets(u):
+def timeline_tweets(u,limit):
     if u.guanzhu == [] or u.guanzhu is None:
         ts = u.tweets
     else:
@@ -140,24 +135,24 @@ def timeline_tweets(u):
         guanzhu_tweets = Tweet.query.filter(Tweet.user_id.in_(gid)).all()
         tweets = u.tweets + guanzhu_tweets
         ts_count = len(tweets)
-        if ts_count > 12:
-            n = next(n for n in range(12, ts_count + 1, 12))
+        if ts_count > limit:
+            n = next(n for n in range(limit, ts_count + 1, limit))
         else:
-            n = 12
+            n = limit
         gid = []
         for t in tweets:
             gid.append(t.id)
-        ts = Tweet.query.filter(Tweet.id.in_(gid)).order_by('created_time DESC').limit(n).offset(12).all()
+        ts = Tweet.query.filter(Tweet.id.in_(gid)).order_by('created_time DESC').limit(n).offset(limit).all()
     return ts
 
 
 # 加载广场的微博
-def plaza_tweets():
+def plaza_tweets(limit):
     ts_count = Tweet.query.count()
-    if ts_count > 12:
-        n = next(n for n in range(12, ts_count + 1, 12))
+    if ts_count > limit:
+        n = next(n for n in range(limit, ts_count + 1, limit))
     else:
-        n = 12
-    ts = Tweet.query.order_by('created_time DESC').limit(n).offset(12).all()
+        n = limit
+    ts = Tweet.query.order_by('created_time DESC').limit(n).offset(limit).all()
     return ts
 

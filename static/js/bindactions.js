@@ -51,8 +51,8 @@
         });
         // 赞
         $('.button-tweet-praise').on('click', function(){
-            var praiseButton = $(this);
-            praiseTweet(praiseButton);
+            var tweet_id = $(this).data('id');
+            praiseTweet(tweet_id);
         });
 
         // 删微博

@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "dependencies": {
         "alertifyjs": "^1.8.0",
-        "tmodjs": "1.0.3"
+        "tmodjs": "1.0.4"
     },
     "tmodjs-config": {
         "output": "../static/js",
@@ -16,6 +16,7 @@
         "runtime": "template.js",
         "combo": true,
         "minify": true,
-        "cache": true
+        "cache": true,
+        "verbose": true
     }
 }

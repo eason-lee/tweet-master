@@ -12,14 +12,15 @@ var commentTemplate = function (data) {
 insertComment = function (data) {
     $('#id-div-comments-'+ data.tweet_id).prepend(commentTemplate(data));
     $('#id-input-comment-'+ data.tweet_id).val("");
+    $('#id-button-comment-' + data.tweet_id).find('em').text(data.comments_count);
 };
 
 var addComment = function(tweetCommentId) {
     var tweet_id = tweetCommentId
-    var comments_count = $('#id-button-comment-' + tweet_id).val();
+    var comments_count = $('#id-button-comment-' + tweet_id).find('em').text();
     var form = {
         comment: $('#id-input-comment-'+ tweet_id).val(),
-        comments_count: parseInt(comments_count) + 1
+        comments_count: comments_count
     };
     if(form.comment == "") {
         var selector = '#id-input-comment-'+ tweet_id;
@@ -27,7 +28,6 @@ var addComment = function(tweetCommentId) {
         setTimeout(function(){$(selector).css('background-color','white')},800);
     } else {
         var success = function (r) {
-            log('comment, ', r);
             if(r.success) {
                 insertComment(r.data);
             } else {

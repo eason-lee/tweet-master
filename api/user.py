@@ -87,7 +87,6 @@ def del_form_empty(form):
 def user_addthings():
     u = current_user()
     form = request.get_json()
-    print('form', form)
     form = del_form_empty(form)
     u.updates(form)
     r = dict(

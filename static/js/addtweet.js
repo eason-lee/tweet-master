@@ -9,7 +9,7 @@
           time: time,
           id: t.id,
           uportrait: t.portrait,
-          unicheng: t.nicheng,
+          unickname: t.nickname,
           user_id: t.user_id,
           current_user: user_id,
       };
