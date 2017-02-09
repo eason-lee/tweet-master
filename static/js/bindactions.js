@@ -68,16 +68,6 @@
         $('#id-button-addUserThings').on('click', function() {
             updateUserData();
         });
-        // 鼠标滚动到底部自动加载微博
-        // $(window).on('scroll',function() {
-        //     var scrollTop = $(this).scrollTop();
-        //     var scrollHeight = $(document).height();
-        //     var windowHeight = $(this).height();
-        //     if(scrollTop + windowHeight == scrollHeight){
-        //         log('到底了')
-        //         loadTweets();
-        //     }
-        // });
         // 按钮加载更多微博
         $('.button-tweet-loadTweets-plaza').on('click', function() {
 //          var tweet_id = $("div.my-content-tweet:last").data('id')

@@ -23,6 +23,17 @@
     <script src="/static/js/loadTweets.js"></script>
     <script src="/static/js/bindactions.js"></script>
     <script src="//cdn.bootcss.com/alertify.js/0.3.11/alertify.min.js"></script>
+    <script>
+        $(window).on('scroll',function() {
+             var scrollTop = $(this).scrollTop();
+             var scrollHeight = $(document).height();
+             var windowHeight = $(this).height();
+             if(scrollTop + windowHeight == scrollHeight){
+                 log('到底了')
+                 $('.button-tweet-loadTweets-plaza').click();
+             }
+         });
+    </script>
 </head>
 <body class="my-body">
   <nav class="navbar navbar-inverse">

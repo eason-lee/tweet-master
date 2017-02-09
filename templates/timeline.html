@@ -23,6 +23,18 @@
     <script src="/static/js/loadTweets.js"></script>
     <script src="/static/js/bindactions.js"></script>
     <script src="//cdn.bootcss.com/alertify.js/0.3.11/alertify.min.js"></script>
+    <script>
+    // 鼠标滚动到底部自动加载微博
+        $(window).on('scroll',function() {
+             var scrollTop = $(this).scrollTop();
+             var scrollHeight = $(document).height();
+             var windowHeight = $(this).height();
+             if(scrollTop + windowHeight == scrollHeight){
+                 log('到底了')
+                 $('.button-tweet-loadTweets-timeline').click();
+             }
+         });
+    </script>
 </head>
 <body class="my-body">
   <nav class="navbar navbar-inverse">
@@ -237,9 +249,9 @@
       </div>
   </div>
    {% if tweets==[] %}
-        <button class='button-tweet-loadTweets-plaza  button btn btn-info' data-id="1">更多</button>
+        <button class='button-tweet-loadTweets-timeline  button btn btn-info' data-id="1">更多</button>
    {% else %}
-        <button class='button-tweet-loadTweets-plaza  button btn btn-info' data-id="{{ tweets[-1].id }}">更多</button>
+        <button class='button-tweet-loadTweets-timeline  button btn btn-info' data-id="{{ tweets[-1].id }}">更多</button>
    {% endif %}
 </body>
 </html>
