@@ -21,8 +21,8 @@ def format_tweets(tweets):
             t.format_data()
             t.comments.sort(key=lambda c: c.created_time, reverse=True)
             t.comments = t.comments[:6]
-            t.transmit_count = len(t.transmit_count)
-            t.praise = len(t.praise)
+            t.transmit_count = len(eval(t.transmit_count))
+            t.praise = len(eval(t.praise))
             if t.transmit == '0':
                 t.images = t.image
             else:
