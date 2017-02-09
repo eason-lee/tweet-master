@@ -13,6 +13,7 @@ insertComment = function (data) {
     $('#id-div-comments-'+ data.tweet_id).prepend(commentTemplate(data));
     $('#id-input-comment-'+ data.tweet_id).val("");
     $('#id-button-comment-' + data.tweet_id).find('em').text(data.comments_count);
+    $('#id-button-comment-' + data.tweet_id).click();
 };
 
 var addComment = function(tweetCommentId) {
