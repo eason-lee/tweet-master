@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <title> 个人主页 </title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/mycss.css">
@@ -36,7 +37,7 @@
          });
     </script>
 </head>
-<body class="my-body">
+<body class="my-body" >
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -88,7 +89,7 @@
                 </div>
             </div>
 
-            <div class="my-connect">
+            <div class="my-connect" >
                 {% for t in tweets %}
                     {% if t.transmit == '0' %}
                         <div id="id-div-tweet-body" class="my-content-tweet">
@@ -241,11 +242,13 @@
             </div>
       </div>
       <div class="my-timeline-sidebar">
-          <div class="my-sidebar-connect">
-                <img src={{user.portrait}} alt="..." width="150" height="150" class="img-thumbnail">
-                <h4> {{user.nickname}} </h4>
-                <h5> <em>关注：{{ user.follow_count }}  粉丝: {{ user.followed_count }} </em></h5>
-          </div>
+          <div calss="my-sidebar-image">
+            <img src={{user.portrait}} alt="..." width="150" height="150" class="img-thumbnail">
+        </div>
+        <div class="my-sidebar-connect">
+            <h4> {{user.nickname}} </h4>
+            <h5> <em>关注：{{ user.follow_count }}  粉丝: {{ user.followed_count }} </em></h5>
+        </div>
       </div>
   </div>
    {% if tweets==[] %}

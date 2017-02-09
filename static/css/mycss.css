@@ -46,7 +46,9 @@
     /*flex-grow: 1;*/
     height: 400px;
     margin: 44px;
-    margin-left: 353px;
+    /*margin-left: 353px;*/
+    margin-left: 825px;
+    position: absolute;
 }
 
 .my-tweet-add {
