@@ -3,6 +3,7 @@ from flask_login import LoginManager
 from  werkzeug.security import generate_password_hash
 from  werkzeug.security import check_password_hash
 from flask_login import UserMixin
+from random import randint
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -11,7 +12,7 @@ login_manager.login_view = 'api.user.login'
 class User(ReprMixin, db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(128))
+    username = db.Column(db.String(128),unique=True)
     password_hash = db.Column(db.String(128))
     created_time = db.Column(db.Integer, default=timestamp())
     portrait = db.Column(db.String(128), default='')
@@ -29,7 +30,18 @@ class User(ReprMixin, db.Model, UserMixin):
 
     @classmethod
     def tourist(cls):
-        return cls.query.filter_by(id=5).first()
+        name = 'youke12'
+        for r in range(4):
+            i = str(randint(0,9))
+            name += i
+        form = dict(
+            username = name,
+            password = 'youkedemima',
+            portrait = "/static/image/default-portrait.png",
+            nickname = name,
+        )
+        tourist = cls(form)
+        return tourist
 
     @property
     def password(self):

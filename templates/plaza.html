@@ -64,7 +64,7 @@
     <div class="my-connect">
         {% for t in tweets %}
             {% if t.transmit == '0' %}
-                <div id="id-div-tweet-body" class="my-content-tweet">
+                <div id="id-div-tweet-body-{{t.id}}" class="my-content-tweet" data-id="{{ t.id }}">
                     <div class="modal fade" id="id-div-follow-{{t.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="my-modal-follow">
                             <img src={{t.user.portrait}} class="my-portrait-follow img-thumbnail">
@@ -120,7 +120,7 @@
                       </div>
                     </div>
                 {% else %}
-                <div id="id-div-tweet-body" class="my-tweet-transmit">
+                <div id="id-div-tweet-body-{{t.id}}" class="my-tweet-transmit" data-id="{{ t.id }}">
                     <div class="my-transmit-top">
                         <div class="modal fade" id="id-div-follow-{{t.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="my-modal-follow">
@@ -202,6 +202,10 @@
         </div>
     </div>
 </div>
-<button class='button-tweet-loadTweets-plaza  button btn btn-info' data-id="{{ tweets[-1].id }}">更多</button>
+  {% if tweets==[] %}
+        <button class='button-tweet-loadTweets-plaza  button btn btn-info' data-id="1">更多</button>
+  {% else %}
+        <button class='button-tweet-loadTweets-plaza  button btn btn-info' data-id="{{ tweets[-1].id }}">更多</button>
+  {% endif %}
 </body>
 </html>

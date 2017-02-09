@@ -80,6 +80,8 @@
         // });
         // 按钮加载更多微博
         $('.button-tweet-loadTweets-plaza').on('click', function() {
+//          var tweet_id = $("div.my-content-tweet:last").data('id')
+//          log('tweet id',tweet_id)
           var tweet_id = $(this).data('id')
           loadTweetsPlaza(tweet_id);
         });

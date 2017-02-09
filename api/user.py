@@ -6,6 +6,7 @@ main = Blueprint('user', __name__)
 @main.route('/register', methods=['POST'])
 def register():
     form = request.get_json()
+
     u = User(form)
     r = {
         'success': True
@@ -31,26 +32,34 @@ def register():
 @main.route('/login', methods=['POST'])
 def login():
     form = request.get_json()
-    username = form.get('username', '')
-    user = User.user_by_name(username)
     r = {
         'success': False,
         'message': '登录失败',
     }
-    if user is not None and user.validate_auth(form):
+    username = form.get('username', '')
+    if username == 'youkelaile':
+        print('youke ',form)
+        user = User.tourist()
         r['success'] = True
         r['next'] = request.args.get('next', url_for('view.plaza_view'))
-        session.permanent = True
-        session['id'] = user.id
+        print('user',user)
     else:
-        r['success'] = False
-        r['message'] = '登录失败'
+        user = User.user_by_name(username)
+        if user is not None and user.validate_auth(form):
+            r['success'] = True
+            r['next'] = request.args.get('next', url_for('view.plaza_view'))
+            session.permanent = True
+            session['id'] = user.id
+        else:
+            r['success'] = False
+            r['message'] = '登录失败'
     return jsonify(r)
 
 
 @main.route('/logout')
 @login_required
 def logout():
+
     logout_user()
     flash('你已经退出登录了')
     return render_template('login.html')
