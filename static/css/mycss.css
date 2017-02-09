@@ -278,7 +278,16 @@
     width: 266px;
 }
 
-.button-tweet-loadTweets {
+.button-tweet-loadTweets-plaza {
+    width: 100%;
+    color: #2b2828;
+    background-color: rgba(91, 192, 222, 0);
+    border-color: rgba(70, 184, 218, 0);
+    position:fixed;
+    bottom:0;
+}
+
+.button-tweet-loadTweets-timeline {
     width: 100%;
     color: #2b2828;
     background-color: rgba(91, 192, 222, 0);

@@ -9,6 +9,7 @@ class Comment(ReprMixin, db.Model):
     created_time = db.Column(db.Integer, default=0)
     tweet_id = db.Column(db.Integer, db.ForeignKey('tweets.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    deleted = db.Column(db.Boolean, default=False)
 
     def key_mapper(self):
         mapper = {

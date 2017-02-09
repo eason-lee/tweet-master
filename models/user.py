@@ -18,6 +18,7 @@ class User(ReprMixin, db.Model, UserMixin):
     nickname = db.Column(db.String(128), default='')
     follow = db.Column(db.Text(128), default='[]')
     followed = db.Column(db.Text(128), default='[]')
+    deleted = db.Column(db.Boolean, default=False)
     # 外键关联
     tweets = db.relationship('Tweet', backref='user')
     comments = db.relationship('Comment', backref='user')

@@ -23,7 +23,6 @@ var addUserThings = function() {
     var success = function (r) {
       if(r.success) {
           alertify.success(r.data);
-
       } else {
           alertify.error('失败');
       }

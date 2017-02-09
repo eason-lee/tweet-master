@@ -19,7 +19,6 @@
   // 添加微博
   var addNewTweet = function() {
       var images= arguments[0];
-      log('文件',images);
       var form = {
           'content': $('#id-input-tweet').val(),
           'image': images
@@ -32,7 +31,6 @@
           }, 800);
       } else {
           var success = function (r) {
-            log('login, ', r);
             if(r.success) {
                 var tem = insertTweet(r.data,r.user_id);
                 $('.my-connect').prepend(tem);

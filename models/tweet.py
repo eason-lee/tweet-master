@@ -1,8 +1,7 @@
 from . import *
-
+from .comment import Comment
 
 class Tweet(ReprMixin,db.Model):
-
     __tablename__ = 'tweets'
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(128))
@@ -11,9 +10,10 @@ class Tweet(ReprMixin,db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     praise = db.Column(db.Integer, default='[]')
     transmit = db.Column(db.String(128), default=0)
-    transmit_count = db.Column(db.Integer, default=0)
+    transmit_count = db.Column(db.Integer, default='[]')
     comments = db.relationship('Comment',backref='tweet')
     comments_count = db.Column(db.Integer,default=0)
+    deleted = db.Column(db.Boolean,default=False)
 
     @classmethod
     def add(cls,user,form):
@@ -33,8 +33,15 @@ class Tweet(ReprMixin,db.Model):
         return r
 
     @classmethod
+    def delete(cls,id):
+        m = cls.query.get(id)
+        m.deleted = True
+        m.save()
+
+
+    @classmethod
     def add_praise(cls,tweet_id,user):
-        t = cls.query.filter_by(id=tweet_id).first()
+        t = cls.query.get(tweet_id)
         praise = eval(t.praise)
         if user.id in praise:
             praise.remove(user.id)
@@ -48,6 +55,50 @@ class Tweet(ReprMixin,db.Model):
             success=True,
             data=t.json(),
         )
+        return r
+
+    @classmethod
+    def add_transmit(cls,tweet_id,user,form):
+        u = user
+        form['transmit'] = tweet_id
+        bt = cls.query.get(tweet_id)
+        c = eval(bt.transmit_count)
+        if u.id not in c:
+            c.append(u.id)
+            bt.transmit_count = str(c)
+            t = Tweet(form)
+            t.user = u
+            t.save()
+            bt.save()
+            t.json()
+            t.nickname = u.nickname
+            t.portrait = u.portrait
+            t.transmit_count = len(t.transmit_count)
+            tuser = User.query.filter_by(id=bt.user_id).first()
+            bt.nickname = tuser.nickname
+            r = {
+                'success': True,
+                'data': t.json(),
+                'tweet': bt.json(),
+                'user_id': u.id,
+            }
+        return r
+
+    @classmethod
+    def add_comment(cls,tweet_id,user,form):
+        t = cls.query.get(tweet_id)
+        t.comments_count = int(form['comments_count']) + 1
+        del form['comments_count']
+        c = Comment(form)
+        c.tweet = t
+        c.user = user
+        c.save()
+        t.save()
+        c.comments_count = t.comments_count
+        r = {
+            'success': True,
+            'data': c.json(),
+        }
         return r
 
     def key_mapper(self):

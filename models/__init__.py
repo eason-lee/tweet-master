@@ -43,13 +43,14 @@ class ReprMixin(object):
 
 
     def format_data(self):
-        for k, v in self.__dict__.items():
-            if isinstance(v,str) and len(v) > 2:
-                if '[' == v[0] and ']'== v[-1]:
-                    v = eval(v)
-            if v == '[]':
-                v = []
-            self.__dict__[k] = v
+        if self.deleted != True:
+            for k, v in self.__dict__.items():
+                if isinstance(v,str) and len(v) > 2:
+                    if '[' == v[0] and ']'== v[-1]:
+                        v = eval(v)
+                if v == '[]':
+                    v = []
+                self.__dict__[k] = v
 
 
     def save(self):
@@ -58,7 +59,7 @@ class ReprMixin(object):
 
     @classmethod
     def delete(cls,id):
-        data = cls.query.filter_by(id=id).first()
+        data = cls.query.get(id)
         db.session.delete(data)
         db.session.commit()
 

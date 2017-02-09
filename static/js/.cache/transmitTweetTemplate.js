@@ -1,7 +1,7 @@
-/*TMODJS:{"version":7,"md5":"7e724b9997a3db0929da739290ea3339"}*/
+/*TMODJS:{"version":8,"md5":"4498faebbee5035adf00cc165938c907"}*/
 template('transmitTweetTemplate',function($data,$filename
 /**/) {
-'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,did=$data.did,dportrait=$data.dportrait,user_id=$data.user_id,dnickname=$data.dnickname,dtime=$data.dtime,dcontent=$data.dcontent,tnickname=$data.tnickname,ttime=$data.ttime,tcontent=$data.tcontent,$each=$utils.$each,timage=$data.timage,value=$data.value,i=$data.i,tid=$data.tid,tpraise=$data.tpraise,ttransmit=$data.ttransmit,tcomments=$data.tcomments,current_user=$data.current_user,dpraise=$data.dpraise,dtransmit_count=$data.dtransmit_count,dcomments_count=$data.dcomments_count,$out='';$out+=' <div id="id-div-tweet-body" class="my-tweet-transmit"> <div class="my-transmit-top"> <div class="modal fade" id="id-div-follow-';
+'use strict';var $utils=this,$helpers=$utils.$helpers,$escape=$utils.$escape,did=$data.did,dportrait=$data.dportrait,user_id=$data.user_id,dnickname=$data.dnickname,dtime=$data.dtime,dcontent=$data.dcontent,tnickname=$data.tnickname,ttime=$data.ttime,tcontent=$data.tcontent,$each=$utils.$each,timage=$data.timage,value=$data.value,i=$data.i,tid=$data.tid,tpraise=$data.tpraise,ttransmit=$data.ttransmit,tcomments=$data.tcomments,current_user=$data.current_user,dpraise=$data.dpraise,dtransmit_count=$data.dtransmit_count,ttransmit_count=$data.ttransmit_count,dcomments_count=$data.dcomments_count,tcomments_count=$data.tcomments_count,$out='';$out+=' <div id="id-div-tweet-body" class="my-tweet-transmit"> <div class="my-transmit-top"> <div class="modal fade" id="id-div-follow-';
 $out+=$escape(did);
 $out+='" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> <div class="my-modal-follow"> <img src=';
 $out+=$escape(dportrait);
@@ -63,17 +63,17 @@ $out+=' <div class="my-transmit-bottom"> <button type="button" class="my-transmi
 $out+=$escape(did);
 $out+='" value="';
 $out+=$escape(dpraise);
-$out+='"><span class="glyphicon glyphicon-thumbs-up"></span> ';
-$out+=$escape(dpraise);
-$out+=' </button> <button id="id-button-transmit-';
+$out+='"><span class="glyphicon glyphicon-thumbs-up"></span> <em>';
+$out+=$escape(tpraise);
+$out+='</em> </button> <button id="id-button-transmit-';
 $out+=$escape(did);
 $out+='" class="button-tweet-transmit my-transmit-button button btn btn-info" data-id="';
 $out+=$escape(did);
 $out+='" value="';
 $out+=$escape(dtransmit_count);
-$out+='" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-new-window"></span> ';
-$out+=$escape(dtransmit_count);
-$out+=' </button> <button id="id-button-comment-';
+$out+='" data-toggle="modal" data-target="#myModal"> <span class="glyphicon glyphicon-new-window"></span> <em>';
+$out+=$escape(ttransmit_count);
+$out+='</em> </button> <button id="id-button-comment-';
 $out+=$escape(did);
 $out+='" class="button-tweet-comment my-transmit-button button btn btn-primary" data-id="';
 $out+=$escape(did);
@@ -81,9 +81,9 @@ $out+='" value="';
 $out+=$escape(dcomments_count);
 $out+='" data-toggle="collapse" data-target="#collapseExample-';
 $out+=$escape(did);
-$out+='" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-comment"> </span> ';
-$out+=$escape(dcomments_count);
-$out+=' </button> </div> ';
+$out+='" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-comment"> </span> <em>';
+$out+=$escape(tcomments_count);
+$out+='</em> </button> </div> ';
 }
 $out+=' </div> ';
 return new String($out);

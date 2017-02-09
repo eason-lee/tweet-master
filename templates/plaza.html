@@ -185,7 +185,7 @@
                 <textarea id="id-input-transmit" class="form-control" rows="3" placeholder="你有什么想说的..."></textarea>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="id-button-transmit-off" type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button id="id-button-transmit-submit" class=" btn btn-primary" type="button" >转发</button>
               </div>
             </div>
@@ -202,6 +202,6 @@
         </div>
     </div>
 </div>
-<button class='button-tweet-loadTweets  button btn btn-info' data-id="2">更多</button>
+<button class='button-tweet-loadTweets-plaza  button btn btn-info' data-id="{{ tweets[-1].id }}">更多</button>
 </body>
 </html>

@@ -79,11 +79,14 @@
         //     }
         // });
         // 按钮加载更多微博
-        $('.button-tweet-loadTweets').on('click', function() {
-          var page_id = $(this).data('id')
-          loadTweets(page_id);
+        $('.button-tweet-loadTweets-plaza').on('click', function() {
+          var tweet_id = $(this).data('id')
+          loadTweetsPlaza(tweet_id);
         });
-
+        $('.button-tweet-loadTweets-timeline').on('click', function() {
+          var tweet_id = $(this).data('id')
+          loadTweetsTimeline(tweet_id);
+        });
     };
 
 

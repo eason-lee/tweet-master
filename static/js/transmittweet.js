@@ -2,17 +2,17 @@
 // 转发微博
 var transmitTweet = function() {
     var tweet_id = tweetTransmitId;
-    var transmit_count = $('#id-button-transmit-' + tweet_id).val();
-    log('transmit_count',transmit_count);
     var form = {
         content: $('#id-input-transmit').val(),
-        transmit_count: parseInt(transmit_count) + 1
     };
     var success = function (r) {
       log('login, ', r);
       if(r.success) {
-          var temp = insertTransmit(r.data,r.tweet,r.user_id);
+          var temp = (r.data,r.tweet,r.user_id);
           $('.my-connect').prepend(temp);
+          $('#id-button-transmit-' + t.id).find('em').text(t.transmit_count);
+          $('#id-input-transmit').val("");
+          $('#id-button-transmit-off').click();
       } else {
           log('转发失败');
       }
@@ -57,5 +57,4 @@ var insertTransmit = function(data,tweet,user_id) {
     log('datas',datas)
     var temp = template('transmitTweetTemplate', datas);
     return temp
-
 }

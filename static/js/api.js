@@ -117,7 +117,12 @@ vip.transmitTweet = function (form,tweet_id,success,error) {
     this.post(url,form,success,error);
 };
 
-vip.loadTweets = function (page_id,success,error) {
-    url = '/tweet/loads/'+page_id;
+vip.loadTweetsPlaza = function (tweet_id,success,error) {
+    url = '/tweet/loads/plaza/'+tweet_id;
+    this.get(url,success,error);
+};
+
+vip.loadTweetsTimeline = function (tweet_id,success,error) {
+    url = '/tweet/loads/timeline/'+tweet_id;
     this.get(url,success,error);
 };

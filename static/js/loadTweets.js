@@ -1,14 +1,32 @@
-var loadTweets = function (page_id) {
+var loadTweetsPlaza = function (tweet_id) {
     var success = function (r) {
-      log('loadTweets',r);
         if(r.success) {
           loadTemplate(r);
+          log('id data ',$('.button-tweet-loadTweets-plaza').data('id'))
+          $('.button-tweet-loadTweets-plaza').data('id',r.last_tweet)
+        } else {
+            alertify.error('没有微博了');
         }
     };
     var error = function(err) {
       log(err);
     };
-    vip.loadTweets(page_id,success,error);
+    vip.loadTweetsPlaza(tweet_id,success,error);
+};
+
+var loadTweetsTimeline = function (tweet_id) {
+    var success = function (r) {
+        if(r.success) {
+          loadTemplate(r);
+          $('.button-tweet-loadTweets-timeline').data('id',r.last_tweet);
+        } else {
+            alertify.error('没有微博了');
+        }
+    };
+    var error = function(err) {
+      log(err);
+    };
+    vip.loadTweetsTimeline(tweet_id,success,error);
 };
 
 var loadTemplate = function (r) {
@@ -17,13 +35,13 @@ var loadTemplate = function (r) {
     for(var i = 0; i < tweets.length; i++) {
         var t = tweets[i];
         if (t.transmit == '0') {
-            log('不是转发的',t.transmit)
+
             var temp = insertTweet(t,user_id);
             $('.my-connect').append(temp);
         } else {
             var data = t;
             var tweet = t.tweet;
-            log('是转发的',t.transmit)
+
             var temp = insertTransmit(data,tweet,user_id);
             $('.my-connect').append(temp);
         }
