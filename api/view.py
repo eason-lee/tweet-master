@@ -21,8 +21,6 @@ def format_tweets(tweets):
             t.format_data()
             t.comments.sort(key=lambda c: c.created_time, reverse=True)
             t.comments = t.comments[:6]
-            print('transmit_count',t.transmit_count,type(t.transmit_count))
-            print('praise',t.praise,type(t.praise))
             if not isinstance(t.transmit_count,int):
                 t.transmit_count = len(t.transmit_count)
             if not isinstance(t.praise, int):

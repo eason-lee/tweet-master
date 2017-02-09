@@ -2,7 +2,7 @@ from . import *
 
 main = Blueprint('file', __name__)
 #服务器
-UPLOAD_FOLDER = '/var/www/tweet-master/app/static/image/'
+UPLOAD_FOLDER = '/var/www/tweet-master/static/image/'
 # 开发
 # UPLOAD_FOLDER = 'static/image/'
 

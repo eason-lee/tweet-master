@@ -32,11 +32,11 @@ class Tweet(ReprMixin,db.Model):
         )
         return r
 
-    @classmethod
-    def delete(cls,id):
-        m = cls.query.get(id)
-        m.deleted = True
-        m.save()
+    # @classmethod
+    # def delete(cls,id):
+    #     m = cls.query.get(id)
+    #     m.deleted = True
+    #     m.save()
 
 
     @classmethod
