@@ -43,40 +43,45 @@ class User(ReprMixin, db.Model, UserMixin):
         follow = User.query.filter_by(id=follow_id).first()
         gz = form['followed']
         if self.id == follow.id:
-            return '不能关注自己'
-        if gz == '+1':
-            # 添加粉丝
-            gz = str(self.id)
-            ufollowed = eval(follow.followed)
-            if gz not in ufollowed:
-                ufollowed.append(gz)
-                follow.followed = str(ufollowed)
-                follow.save()
-            # 添加关注
-            fs = str(follow.id)
-            ffollow = eval(self.follow)
-            if fs not in ffollow:
-                ffollow.append(fs)
-                self.follow = str(ffollow)
-                self.save()
-            message = '关注成功'
-        elif gz == '-1':
-            # 删除粉丝
-            fd = str(self.id)
-            ufollowed = eval(follow.followed)
-            if fd in ufollowed:
-                ufollowed.remove(fd)
-                follow.followed = str(ufollowed)
-                follow.save()
-            # 删除关注
-            ud = str(follow.id)
-            ffollow = eval(self.follow)
-            if ud in ffollow:
-                ffollow.remove(ud)
-                self.follow = str(ffollow)
-                self.save()
-            message = '已取消关注'
-        return message
+            message = '不能关注自己'
+        else:
+            if gz == '+1':
+                # 添加粉丝
+                gz = str(self.id)
+                ufollowed = eval(follow.followed)
+                if gz not in ufollowed:
+                    ufollowed.append(gz)
+                    follow.followed = str(ufollowed)
+                    follow.save()
+                # 添加关注
+                fs = str(follow.id)
+                ffollow = eval(self.follow)
+                if fs not in ffollow:
+                    ffollow.append(fs)
+                    self.follow = str(ffollow)
+                    self.save()
+                message = '关注成功'
+            elif gz == '-1':
+                # 删除粉丝
+                fd = str(self.id)
+                ufollowed = eval(follow.followed)
+                if fd in ufollowed:
+                    ufollowed.remove(fd)
+                    follow.followed = str(ufollowed)
+                    follow.save()
+                # 删除关注
+                ud = str(follow.id)
+                ffollow = eval(self.follow)
+                if ud in ffollow:
+                    ffollow.remove(ud)
+                    self.follow = str(ffollow)
+                    self.save()
+                message = '已取消关注'
+        r = dict(
+            success=True,
+            message=message,
+        )
+        return r
 
     def key_mapper(self):
         mapper = {

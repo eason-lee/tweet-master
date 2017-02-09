@@ -61,7 +61,10 @@ def tweet_addPraise(id):
 def tweet_transmit(id):
     u = current_user()
     form = request.get_json()
-    r = Tweet.add_transmit(id,u,form)
+    try:
+        r = Tweet.add_transmit(id,u,form)
+    except:
+        r = dict(success=False)
     return jsonify(r)
 
 # 加载plaza微博

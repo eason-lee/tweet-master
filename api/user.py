@@ -12,7 +12,6 @@ def register():
     }
     status, msgs = u.register_validate()
     if status:
-        print("register success", form)
         # 设置默认头像
         u.portrait = "/static/image/default-portrait.png"
         u.nickname = u.username
@@ -23,7 +22,6 @@ def register():
         session.permanent = True
         session['id'] = u.id
     else:
-        print('register failed', form)
         r['success'] = False
         r['message'] = '\n'.join(msgs)
     return jsonify(r)
@@ -35,7 +33,6 @@ def login():
     form = request.get_json()
     username = form.get('username', '')
     user = User.user_by_name(username)
-    print('user login', user, form)
     r = {
         'success': False,
         'message': '登录失败',
@@ -66,11 +63,10 @@ def user_addRelation(follow_id):
     followed = current_user()
     form = request.get_json()
     # 找到被关注者
-    message = followed.add_relation(follow_id,form)
-    r = dict(
-        success=True,
-        message=message,
-    )
+    try:
+        r = followed.add_relation(follow_id,form)
+    except:
+        r = dict(success=False)
     return jsonify(r)
 
 
@@ -88,9 +84,12 @@ def user_addthings():
     u = current_user()
     form = request.get_json()
     form = del_form_empty(form)
-    u.updates(form)
-    r = dict(
-        success=True,
-        data='更新成功',
-    )
+    try:
+        u.updates(form)
+        r = dict(
+            success=True,
+            data='更新成功',
+        )
+    except:
+        r = dict(success=False)
     return jsonify(r)
