@@ -1,5 +1,5 @@
 from . import *
-
+from sqlalchemy import and_
 main = Blueprint('tweet', __name__)
 
 # 添加微博
@@ -122,7 +122,7 @@ def add_userinfo(ts):
     return ts
 
 # 加载个人主页的微博
-def timeline_tweets(u,limit,offset):
+def timeline_tweets(u,limit,id):
     if u.follow == [] or u.follow is None:
         ts = u.tweets
     else:
@@ -134,12 +134,12 @@ def timeline_tweets(u,limit,offset):
         gid = []
         for t in tweets:
             gid.append(t.id)
-        ts = Tweet.query.filter(Tweet.id.in_(gid)).order_by('created_time DESC').limit(limit).offset(offset).all()
+        ts = Tweet.query.filter(and_(Tweet.id.in_(gid),Tweet.id < id)).order_by('created_time DESC').limit(limit).all()
     return ts
 
 
 # 加载广场的微博
-def plaza_tweets(limit,offset):
-    ts = Tweet.query.order_by('created_time DESC').limit(limit).offset(offset).all()
+def plaza_tweets(limit,id):
+    ts = Tweet.query.filter(Tweet.id < id).order_by('created_time DESC').limit(limit).all()
     return ts
 
