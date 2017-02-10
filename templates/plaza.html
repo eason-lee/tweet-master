@@ -72,11 +72,11 @@
     </div>
   </div>
   </nav>
-  <div class="my-container">
-    <div class="my-connect">
+  <div class="my-container row">
+    <div class="my-connects col-xs-12 col-sm-6 col-md-8">
         {% for t in tweets %}
             {% if t.transmit == '0' %}
-                <div id="id-div-tweet-body-{{t.id}}" class="my-content-tweet" data-id="{{ t.id }}">
+                <div id="id-div-tweet-body" class="my-content-tweet" data-id="{{ t.id }}">
                     <div class="modal fade" id="id-div-follow-{{t.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="my-modal-follow">
                             <img src={{t.user.portrait}} class="my-portrait-follow img-thumbnail">
@@ -132,7 +132,7 @@
                       </div>
                     </div>
                 {% else %}
-                <div id="id-div-tweet-body-{{t.id}}" class="my-tweet-transmit" data-id="{{ t.id }}">
+                <div id="id-div-tweet-body" class="my-tweet-transmit" data-id="{{ t.id }}">
                     <div class="my-transmit-top">
                         <div class="modal fade" id="id-div-follow-{{t.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="my-modal-follow">
@@ -204,8 +204,8 @@
           </div>
         </div>
     </div>
-    <div class="my-sidebar">
-        <div calss="my-sidebar-image">
+    <div class="my-sidebar col-xs-6 col-md-4 visible-lg">
+        <div class="my-sidebar-image ">
             <img src={{user.portrait}} alt="..." width="150" height="150" class="img-thumbnail">
         </div>
         <div class="my-sidebar-connect">

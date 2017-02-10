@@ -19,9 +19,9 @@
 }
 
 .my-container {
-    display: flex;
+    /*display: flex;
     margin: 0 auto;
-    width: 70%;
+    width: 70%;*/
 }
 
 .my-connect {
@@ -31,9 +31,10 @@
 }
 
 .my-connects {
-    flex-grow: 3;
+    /*flex-grow: 3;
     margin: 25px;
-    width: 23%;
+    width: 23%;*/
+    padding-left: 165px;
 }
 
 .my-content-tweet {
@@ -44,11 +45,12 @@
 }
 .my-sidebar {
     /*flex-grow: 1;*/
-    height: 400px;
-    margin: 44px;
+    /*height: 400px;
+    margin: 44px;*/
     /*margin-left: 353px;*/
-    margin-left: 825px;
-    position: absolute;
+    /*margin-left: 825px;
+    position: absolute;*/
+    padding-top: 14px;
 }
 
 .my-tweet-add {
@@ -110,6 +112,11 @@
 
 .my-sidebar-connect {
     text-align: center;
+    padding-right: 201px;
+}
+
+.my-sidebar-image {
+    padding-left: 39px;
 }
 
 .my-tweet-follow {
