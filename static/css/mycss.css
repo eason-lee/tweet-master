@@ -1,7 +1,8 @@
 
 .my-body {
     background-image: url(../image/010223.jpg);
-    background-repeat:no-repeat;
+    /*background-repeat:no-repeat;*/
+    background-repeat: round;
     background-attachment:fixed;
     background-size: cover;
 }
@@ -34,7 +35,7 @@
     /*flex-grow: 3;
     margin: 25px;
     width: 23%;*/
-    padding-left: 165px;
+    padding-left: 109px;
 }
 
 .my-content-tweet {
@@ -91,7 +92,7 @@
 
 .my-timeline-sidebar {
     flex-grow: 2;
-    padding-top: 57px;
+    padding-top: 71px;
 }
 
 .my-div-comment {
@@ -112,11 +113,11 @@
 
 .my-sidebar-connect {
     text-align: center;
-    padding-right: 201px;
+    padding-right: 46px;
 }
 
 .my-sidebar-image {
-    padding-left: 39px;
+    padding-left: 78px;
 }
 
 .my-tweet-follow {

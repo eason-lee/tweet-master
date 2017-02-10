@@ -12,7 +12,7 @@ login_manager.login_view = 'api.user.login'
 class User(ReprMixin, db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(128),unique=True)
+    username = db.Column(db.String(128),unique=True,index=True)
     password_hash = db.Column(db.String(128))
     created_time = db.Column(db.Integer, default=timestamp())
     portrait = db.Column(db.String(128), default='')
