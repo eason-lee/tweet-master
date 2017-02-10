@@ -19,6 +19,7 @@ def upload_file():
         success= True,
         message= '',
     )
+    log('file',file.filename)
     if file and allowed_file(file.filename):
         filename = file.filename
         path = os.path.join(UPLOAD_FOLDER, filename)
