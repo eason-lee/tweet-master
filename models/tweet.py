@@ -22,6 +22,8 @@ class Tweet(ReprMixin,db.Model):
             form['image'] = str(image)
         t = cls(form)
         t.user = user
+        t.praise = '[]'
+        t.transmit_count = '[]'
         t.save()
         t.portrait = user.portrait
         t.nickname = user.nickname
