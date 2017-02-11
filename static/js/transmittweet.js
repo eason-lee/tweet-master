@@ -10,7 +10,7 @@ var transmitTweet = function() {
       if(r.success) {
           var temp = (r.data,r.tweet,r.user_id);
           $('.my-connect').prepend(temp);
-          $('#id-button-transmit-' + t.id).find('em').text(t.transmit_count);
+          $('#id-button-transmit-' + r.tweet.id).find('em').text(r.tweet.transmit_count);
           $('#id-input-transmit').val("");
           $('#id-button-transmit-off').click();
       } else {

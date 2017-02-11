@@ -75,9 +75,9 @@ class Tweet(ReprMixin,db.Model):
             t.json()
             t.nickname = u.nickname
             t.portrait = u.portrait
-            t.transmit_count = len(t.transmit_count)
             tuser = User.query.filter_by(id=bt.user_id).first()
             bt.nickname = tuser.nickname
+            bt.transmit_count = len(eval(bt.transmit_count))
             r = {
                 'success': True,
                 'data': t.json(),

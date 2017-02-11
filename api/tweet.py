@@ -71,40 +71,41 @@ def tweet_transmit(id):
 @main.route('/loads/plaza/<int:id>')
 def tweet_loads_plaza(id):
     u = current_user()
-    limit = 12
-    if id == 1:
-        r = dict(success=False)
-    else:
-        ts = plaza_tweets(limit,id)
-        ts = add_userinfo(ts)
-        last_tweet = ts[-1].id
-        r = dict(
-            success=True,
-            data=[t.json() for t in ts],
-            user_id = u.id,
-            last_tweet=last_tweet,
-        )
+    page = 'plaza'
+    r = load_tweets(id,u,page)
     return jsonify(r)
 
 # 加载 timeline 微博
 @main.route('/loads/timeline/<int:id>')
 def tweet_loads_timeline(id):
     u = current_user()
+    page = 'timeline'
+    r = load_tweets(id,u,page)
+    return jsonify(r)
+
+def load_tweets(id,user,page):
+    u = user
     limit = 12
     if id == 1:
         r = dict(success=False)
     else:
-        ts = timeline_tweets(u,limit,id)
+        d = {
+            'plaza': plaza_tweets(limit,id),
+            'timeline': timeline_tweets(u,limit,id),
+        }
+        ts = d[page]
         ts = add_userinfo(ts)
-        last_tweet = ts[-1].id
-        r = dict(
-            success=True,
-            data=[t.json() for t in ts],
-            user_id = u.id,
-            last_tweet = last_tweet,
-        )
-    return jsonify(r)
-
+        if len(ts) <= 1:
+            r = dict(success=False)
+        else:
+            last_tweet = ts[-1].id
+            r = dict(
+                success=True,
+                data=[t.json() for t in ts],
+                user_id=u.id,
+                last_tweet=last_tweet,
+            )
+    return r
 
 # 给每条微博加上用户信息
 def add_userinfo(ts):
