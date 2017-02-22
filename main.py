@@ -34,9 +34,9 @@ def configure_app():
     # 设置你的加密 key
     app.secret_key = 'secret key'
     # sqlite配置
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{}'.format(db_path)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{}'.format(db_path)
     # mysql配置
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://book:book@localhost:3306/abc'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://book:book@localhost:3306/tweet'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
     # 初始化 db
@@ -69,7 +69,7 @@ def server():
     # app = configured_app()
     config = dict(
         debug=True,
-        host='0.0.0.0',
+        # host='0.0.0.0',
         port=5000,
     )
     app.run(**config)
@@ -90,7 +90,7 @@ def rebuild_db():
     print('auth rebuild database')
 
 if __name__ == '__main__':
-    configure_manager()
+    # configure_manager()
     configure_app()
-    manager.run()
-    # server()
+    # manager.run()
+    server()

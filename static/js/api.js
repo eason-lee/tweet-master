@@ -4,7 +4,7 @@
 
 // log
 var log = function () {
-    console.log(arguments);
+//    console.log(arguments);
 };
 
 var formatTime = function(time){

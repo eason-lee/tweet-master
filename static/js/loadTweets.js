@@ -36,12 +36,12 @@ var loadTemplate = function (r) {
         var t = tweets[i];
         if (t.transmit == '0') {
             var temp = insertTweet(t,user_id);
-            $('.my-connect').append(temp);
+            $('.my-connects').append(temp);
         } else {
             var data = t;
             var tweet = t.tweet;
             var temp = insertTransmit(data,tweet,user_id);
-            $('.my-connect').append(temp);
+            $('.my-connects').append(temp);
         }
     }
 };
