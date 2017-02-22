@@ -1,7 +1,7 @@
 var loadTweetsPlaza = function (tweet_id) {
     var success = function (r) {
         if(r.success) {
-          loadTemplate(r);
+          loadTemplate(r,'plaza');
           log('id data ',$('.button-tweet-loadTweets-plaza').data('id'))
           $('.button-tweet-loadTweets-plaza').data('id',r.last_tweet)
         } else {
@@ -17,7 +17,7 @@ var loadTweetsPlaza = function (tweet_id) {
 var loadTweetsTimeline = function (tweet_id) {
     var success = function (r) {
         if(r.success) {
-          loadTemplate(r);
+          loadTemplate(r,'timeline');
           $('.button-tweet-loadTweets-timeline').data('id',r.last_tweet);
         } else {
             alertify.error('没有微博了');
@@ -29,7 +29,7 @@ var loadTweetsTimeline = function (tweet_id) {
     vip.loadTweetsTimeline(tweet_id,success,error);
 };
 
-var loadTemplate = function (r) {
+var loadTemplate = function (r,page) {
     var tweets = r.data;
     var user_id = r.user_id;
     for(var i = 0; i < tweets.length; i++) {
