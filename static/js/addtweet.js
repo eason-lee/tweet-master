@@ -23,6 +23,10 @@
           'content': $('#id-input-tweet').val(),
           'image': images
       };
+      function trim(str){
+        return str.replace(/^(\s|\u00A0)+/,'').replace(/(\s|\u00A0)+$/,'');
+      }
+      form.content = trim(form.content)
       if(form.content == "") {
           var selector = '#id-input-tweet';
           $(selector).css('background-color','#ffd2d2');

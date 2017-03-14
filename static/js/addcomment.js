@@ -23,6 +23,10 @@ var addComment = function(tweetCommentId) {
         comment: $('#id-input-comment-'+ tweet_id).val(),
         comments_count: comments_count
     };
+    function trim(str){
+        return str.replace(/^(\s|\u00A0)+/,'').replace(/(\s|\u00A0)+$/,'');
+    }
+    form.comment = trim(form.comment)
     if(form.comment == "") {
         var selector = '#id-input-comment-'+ tweet_id;
         $(selector).css('background-color','#ffd2d2');
